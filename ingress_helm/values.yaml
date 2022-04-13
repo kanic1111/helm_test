@@ -1,4 +1,4 @@
-# Default values for helm-test.
+# Default values for ingress_helm.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -18,10 +18,10 @@ serviceAccount:
   # Specifies whether a service account should be created
   create: true
   # Annotations to add to the service account
-  annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: "vp-sa"
+  namespace: "default"
 
 podAnnotations: {}
 
@@ -75,6 +75,14 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+rolebinding:
+  create: true
+  
+  name: "vp-rolebinding"
+
+roleRef:
+  name: cluster-admin
+  
 nodeSelector: {}
 
 tolerations: []
